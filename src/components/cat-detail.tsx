@@ -16,6 +16,8 @@ import CatThumbnail from "./cat-thumbnail";
 import { useGetFavsQuery } from "../routes/favourites/api";
 import DeleteFavCatBtn from "./delete-favourite-cat-button";
 import AddFavCatBtn from "./add-favourite-cat-button";
+import CopyCatUrlBtn from "./copy-cat-url-button";
+
 import { find } from "lodash";
 
 type CatDetailProps = {
@@ -31,7 +33,6 @@ const CatDetail: React.FC<CatDetailProps> = ({
   const { catId } = useParams<{ catId: string }>();
   const { data, isFetching } = useCatQuery(catId);
   const { data: favCats } = useGetFavsQuery();
-
   const { id, url, breeds } = data || {};
   const favId = find(favCats, { image_id: id })?.id;
 
@@ -59,9 +60,7 @@ const CatDetail: React.FC<CatDetailProps> = ({
         </ModalBody>
         <ModalFooter>
           <ButtonGroup>
-
-            {<DeleteFavCatBtn id={favId} onSuccess={handleClose} />}
-
+            {< CopyCatUrlBtn/>}
             {catId && <AddFavCatBtn id={catId} disabled={favId != null} />}
             {<DeleteFavCatBtn id={favId} onSuccess={handleClose} />}
           </ButtonGroup>

@@ -29,7 +29,7 @@ const DeleteFavCatBtn: React.FC<DeleteFavCatBtnProps> = ({
   React.useEffect(() => {
     deleteFavCat.isError
       ? toast({
-          title: "Failed to remove from favs.",
+          title: "Failed to remove from favourites.",
           status: "error",
           duration: 1000,
           isClosable: true,
